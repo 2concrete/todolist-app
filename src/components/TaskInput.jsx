@@ -15,10 +15,7 @@ const TaskInput = ({ value, setValue, addTask }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex items-center gap-2 relative top-10"
-    >
+    <form onSubmit={handleSubmit} className="flex items-center gap-2">
       <button className="cursor-pointer">
         <Plus className="text-neutral-200 size-8" />
       </button>

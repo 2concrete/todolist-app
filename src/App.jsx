@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (text) => {
     const newTask = {
@@ -30,7 +37,7 @@ const App = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col gap-15">
+      <div className="flex flex-col h-screen justify-center gap-8">
         <TaskInput addTask={addTask} setValue={setValue} value={value} />
         <TaskList
           deleteTask={deleteTask}
