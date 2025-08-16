@@ -24,11 +24,19 @@ const App = () => {
     );
   };
 
+  const deleteTask = (date) => {
+    setTasks(tasks.filter((task) => task.date !== date));
+  };
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col gap-15">
         <TaskInput addTask={addTask} setValue={setValue} value={value} />
-        <TaskList toggleTask={toggleTask} tasks={tasks} />
+        <TaskList
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+          tasks={tasks}
+        />
       </div>
     </div>
   );
