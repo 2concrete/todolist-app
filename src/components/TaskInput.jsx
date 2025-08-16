@@ -25,7 +25,7 @@ const TaskInput = ({ value, setValue, addTask }) => {
       <input
         onChange={handleChange}
         placeholder="enter task..."
-        className="bg-neutral-200 rounded-sm p-2 outline-none"
+        className="bg-neutral-200 rounded-sm w-60 p-2 outline-none"
         value={value}
       ></input>
     </form>
