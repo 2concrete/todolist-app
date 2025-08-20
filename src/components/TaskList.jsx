@@ -12,6 +12,7 @@ const TaskList = ({ tasks, toggleTask, deleteTask }) => {
             completed={task.completed}
             text={task.text}
             date={task.date}
+            deadline={task.deadline}
           />
         );
       })}

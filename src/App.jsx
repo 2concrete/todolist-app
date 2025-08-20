@@ -7,17 +7,17 @@ const App = () => {
     const saved = localStorage.getItem("tasks");
     return saved ? JSON.parse(saved) : [];
   });
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (text) => {
+  const addTask = (text, deadline) => {
     const newTask = {
       text: text,
       date: Date.now(),
       completed: false,
+      deadline: deadline,
     };
     setTasks([...tasks, newTask]);
     console.log(tasks);
@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col h-screen justify-center gap-8">
-        <TaskInput addTask={addTask} setValue={setValue} value={value} />
+        <TaskInput addTask={addTask} />
         <TaskList
           deleteTask={deleteTask}
           toggleTask={toggleTask}
