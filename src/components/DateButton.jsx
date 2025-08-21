@@ -10,19 +10,24 @@ const DateButton = ({ deadline, setDeadline }) => {
 
   return (
     <div className="relative flex gap-1">
-      <button
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 100 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => setShowPopout(!showPopout)}
         className="flex cursor-pointer"
       >
         <CalendarCheck />
-      </button>
+      </motion.button>
       <AnimatePresence>
         {showPopout && (
           <motion.div
             initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 100, x: 28 }}
+            animate={{ opacity: 100, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute"
+            className=""
           >
             <input
               onChange={handleChange}

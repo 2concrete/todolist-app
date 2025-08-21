@@ -1,0 +1,21 @@
+import { Trash } from "lucide-react";
+import { motion } from "motion/react";
+
+const DeleteAllButton = ({ deleteAll }) => {
+  return (
+    <motion.button
+      title="clear tasks"
+      onClick={() => deleteAll()}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 100 }}
+      whileHover={{ scale: 1.1 }}
+      transition={{ duration: 0.3 }}
+      whileTap={{ scale: 0.9 }}
+      className="cursor-pointer hover:text-red-300"
+    >
+      <Trash />
+    </motion.button>
+  );
+};
+
+export default DeleteAllButton;

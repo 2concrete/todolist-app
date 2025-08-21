@@ -3,7 +3,7 @@ import ToolPopout from "./ToolPopout";
 import { useState } from "react";
 import { motion } from "motion/react";
 
-const TaskInput = ({ addTask }) => {
+const TaskInput = ({ addTask, deleteAll }) => {
   const [value, setValue] = useState("");
   const [deadline, setDeadline] = useState(null);
   const handleChange = (e) => {
@@ -37,7 +37,11 @@ const TaskInput = ({ addTask }) => {
         className="bg-neutral-200 rounded-xs w-60 p-2 outline-none"
         value={value}
       ></input>
-      <ToolPopout deadline={deadline} setDeadline={setDeadline} />
+      <ToolPopout
+        deadline={deadline}
+        setDeadline={setDeadline}
+        deleteAll={deleteAll}
+      />
     </form>
   );
 };
