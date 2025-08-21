@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import ToolPopout from "./ToolPopout";
 import { useState } from "react";
+import { motion } from "motion/react";
 
 const TaskInput = ({ addTask }) => {
   const [value, setValue] = useState("");
@@ -21,9 +22,15 @@ const TaskInput = ({ addTask }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-2">
-      <button type="submit" className="cursor-pointer">
+      <motion.button
+        initial={{ scale: 1 }}
+        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.1 }}
+        type="submit"
+        className="cursor-pointer"
+      >
         <Plus className="text-neutral-200 size-8" />
-      </button>
+      </motion.button>
       <input
         onChange={handleChange}
         placeholder="enter task..."

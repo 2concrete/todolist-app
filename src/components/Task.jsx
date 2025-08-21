@@ -5,6 +5,7 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
   return (
     <div className="flex gap-2 items-center">
       <motion.button
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}
         onClick={() => toggleTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
@@ -24,12 +25,15 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
           </p>
         )}
       </div>
-      <button
+      <motion.button
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => deleteTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
       >
         <X className="size-6 text-neutral-200 hover:text-red-300 transition-all" />
-      </button>
+      </motion.button>
     </div>
   );
 };

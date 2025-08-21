@@ -1,4 +1,5 @@
 import { CalendarCheck } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
 const DateButton = ({ deadline, setDeadline }) => {
@@ -15,20 +16,23 @@ const DateButton = ({ deadline, setDeadline }) => {
       >
         <CalendarCheck />
       </button>
-      <div
-        className={`absolute left-7 transition-all duration-300 ease-in-out ${
-          showPopout
-            ? "opacity-100 translate-x-0 pointer-events-auto"
-            : "opacity-0 -translate-x-2 pointer-events-none"
-        }`}
-      >
-        <input
-          onChange={handleChange}
-          className="outline-none flex items-center"
-          type="date"
-          value={deadline || ""}
-        />
-      </div>
+      <AnimatePresence>
+        {showPopout && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 100, x: 28 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute"
+          >
+            <input
+              onChange={handleChange}
+              className="outline-none flex items-center"
+              type="date"
+              value={deadline || ""}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
