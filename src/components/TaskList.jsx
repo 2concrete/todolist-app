@@ -1,21 +1,30 @@
+import { AnimatePresence, motion } from "motion/react";
 import Task from "./Task";
 
 const TaskList = ({ tasks, toggleTask, deleteTask }) => {
   return (
     <div className="flex flex-col-reverse gap-2">
-      {tasks.map((task, index) => {
-        return (
-          <Task
-            key={index}
-            toggleTask={toggleTask}
-            deleteTask={deleteTask}
-            completed={task.completed}
-            text={task.text}
-            date={task.date}
-            deadline={task.deadline}
-          />
-        );
-      })}
+      <AnimatePresence>
+        {tasks.map((task, index) => (
+          <motion.div
+            key={task.index}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Task
+              key={index}
+              toggleTask={toggleTask}
+              deleteTask={deleteTask}
+              completed={task.completed}
+              text={task.text}
+              date={task.date}
+              deadline={task.deadline}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

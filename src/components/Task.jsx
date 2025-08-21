@@ -3,10 +3,9 @@ import { Check, Clock, Trash } from "lucide-react";
 const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
   return (
     <div className="flex gap-2 items-center">
-      {" "}
       <button
         onClick={() => toggleTask(date)}
-        className="cursor-pointer flex items-center flex-shrink-0" // Prevent shrinking
+        className="cursor-pointer flex items-center flex-shrink-0"
       >
         <Check
           className={`size-6 w-8 hover:text-green-400 transition-all ${
@@ -25,7 +24,7 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
       </div>
       <button
         onClick={() => deleteTask(date)}
-        className="cursor-pointer flex items-center flex-shrink-0" // Prevent shrinking
+        className="cursor-pointer flex items-center flex-shrink-0"
       >
         <Trash className="size-6 text-neutral-200 hover:text-red-300 transition-all" />
       </button>
