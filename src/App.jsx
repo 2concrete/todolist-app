@@ -36,8 +36,8 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col h-screen justify-center gap-8">
+    <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-col gap-8 w-96 h-1/2">
         <TaskInput addTask={addTask} />
         <TaskList
           deleteTask={deleteTask}

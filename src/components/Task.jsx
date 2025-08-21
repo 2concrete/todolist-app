@@ -1,9 +1,11 @@
-import { Check, Clock, Trash } from "lucide-react";
+import { Check, Clock, X } from "lucide-react";
+import { motion } from "motion/react";
 
 const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
   return (
     <div className="flex gap-2 items-center">
-      <button
+      <motion.button
+        whileTap={{ scale: 0.8 }}
         onClick={() => toggleTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
       >
@@ -12,7 +14,7 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
             completed ? "text-green-400" : "text-neutral-200"
           }`}
         />
-      </button>
+      </motion.button>
       <div className="w-60 flex-1 text-neutral-200 p-2 border-b-1 break-words flex flex-col">
         <p>{text}</p>
         {deadline && (
@@ -26,7 +28,7 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
         onClick={() => deleteTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
       >
-        <Trash className="size-6 text-neutral-200 hover:text-red-300 transition-all" />
+        <X className="size-6 text-neutral-200 hover:text-red-300 transition-all" />
       </button>
     </div>
   );

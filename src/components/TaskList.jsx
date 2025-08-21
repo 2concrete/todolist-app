@@ -7,11 +7,11 @@ const TaskList = ({ tasks, toggleTask, deleteTask }) => {
       <AnimatePresence>
         {tasks.map((task, index) => (
           <motion.div
-            key={task.index}
+            key={index}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.1 }}
           >
             <Task
               key={index}

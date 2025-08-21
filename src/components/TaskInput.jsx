@@ -27,7 +27,7 @@ const TaskInput = ({ addTask }) => {
       <input
         onChange={handleChange}
         placeholder="enter task..."
-        className="bg-neutral-200 rounded-sm w-60 p-2 outline-none"
+        className="bg-neutral-200 rounded-xs w-60 p-2 outline-none"
         value={value}
       ></input>
       <ToolPopout deadline={deadline} setDeadline={setDeadline} />
