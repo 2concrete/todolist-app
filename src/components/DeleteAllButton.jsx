@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 const DeleteAllButton = ({ deleteAll }) => {
   return (
     <motion.button
+      type="button"
       title="clear tasks"
       onClick={() => deleteAll()}
       initial={{ opacity: 0 }}

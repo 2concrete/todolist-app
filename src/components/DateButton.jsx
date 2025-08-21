@@ -11,6 +11,7 @@ const DateButton = ({ deadline, setDeadline }) => {
   return (
     <div className="relative flex gap-1">
       <motion.button
+        type="button"
         initial={{ opacity: 0 }}
         animate={{ opacity: 100 }}
         whileHover={{ scale: 1.1 }}
