@@ -58,7 +58,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-neutral-200 dark:bg-neutral-900">
+    <div className="flex justify-center items-center h-screen bg-neutral-100 dark:bg-neutral-900">
       <div className="flex flex-col gap-8 w-96 h-1/2">
         <TaskInput addTask={addTask} deleteAll={deleteAll} />
         <TaskList
@@ -67,7 +67,6 @@ const App = () => {
           tasks={tasks}
           editTask={editTask}
         />
-        <div className="bg-red-500 dark:bg-blue-500 p-4"></div>
       </div>
       <ThemeToggle setIsDark={setIsDark} isDark={isDark} />
     </div>

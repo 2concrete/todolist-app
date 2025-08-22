@@ -29,7 +29,7 @@ const TaskInput = ({ addTask, deleteAll }) => {
         type="submit"
         className="cursor-pointer"
       >
-        <Plus className="text-neutral-200 size-8" />
+        <Plus className="dark:text-neutral-200 text-neutral-800 size-8" />
       </motion.button>
       <input
         onChange={handleChange}

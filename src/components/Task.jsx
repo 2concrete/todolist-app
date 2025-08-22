@@ -26,11 +26,13 @@ const Task = ({
       >
         <Check
           className={`size-6 w-8 transition-all ${
-            completed ? "text-green-400" : "text-neutral-200"
+            completed
+              ? "text-green-400"
+              : "text-neutral-800 dark:text-neutral-200"
           }`}
         />
       </motion.button>
-      <div className="w-60 flex-1 text-neutral-200 p-2 border-b-1 break-words flex flex-col">
+      <div className="flex-1 p-2 border-b-1 break-words flex flex-col">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -43,7 +45,7 @@ const Task = ({
             placeholder={text}
             value={newText}
             ref={inputRef}
-            className="outline-none placeholder:text-white focus:placeholder:opacity-0"
+            className="w-full outline-none bg-transparent placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0"
           ></input>
         </form>
         {deadline && (
@@ -60,7 +62,7 @@ const Task = ({
         onClick={() => deleteTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
       >
-        <X className="size-6 text-neutral-200 hover:text-red-300 transition-all" />
+        <X className="size-6 text-neutral-800 dark:text-neutral-200 hover:text-red-300 transition-all" />
       </motion.button>
     </div>
   );

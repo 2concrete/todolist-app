@@ -7,7 +7,7 @@ import DeleteAllButton from "./DeleteAllButton";
 const ToolPopout = ({ setDeadline, deadline, deleteAll }) => {
   const [showPopout, setShowPopout] = useState(false);
   return (
-    <div className="flex gap-1 text-neutral-200">
+    <div className="flex gap-1 text-neutral-800 dark:text-neutral-200">
       <motion.button
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}

@@ -1,8 +1,8 @@
-module.exports = {
-  darkMode: "class", // This enables class-based dark mode
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  darkMode: "class",
   theme: {
-    extend: {
-      // your existing config
-    },
+    extend: {},
   },
+  plugins: [],
 };
