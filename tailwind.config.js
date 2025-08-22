@@ -1,15 +1,8 @@
 module.exports = {
+  darkMode: "class", // This enables class-based dark mode
   theme: {
     extend: {
-      keyframes: {
-        floatDown: {
-          from: { opacity: 0, transform: "translateY(-20px)" },
-          to: { opacity: 1, transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        floatDown: "floatDown 0.5s ease-in-out",
-      },
+      // your existing config
     },
   },
 };

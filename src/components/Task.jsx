@@ -1,7 +1,21 @@
 import { Check, Clock, X } from "lucide-react";
 import { motion } from "motion/react";
+import { useState, useRef } from "react";
 
-const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
+const Task = ({
+  text,
+  date,
+  toggleTask,
+  deleteTask,
+  completed,
+  deadline,
+  editTask,
+}) => {
+  const [newText, setNewText] = useState("");
+  const handleChange = (e) => {
+    setNewText(e.target.value);
+  };
+  const inputRef = useRef(null);
   return (
     <div className="flex gap-2 items-center">
       <motion.button
@@ -17,7 +31,21 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
         />
       </motion.button>
       <div className="w-60 flex-1 text-neutral-200 p-2 border-b-1 break-words flex flex-col">
-        <p>{text}</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            editTask(date, newText);
+            inputRef.current.blur();
+          }}
+        >
+          <input
+            onChange={handleChange}
+            placeholder={text}
+            value={newText}
+            ref={inputRef}
+            className="outline-none placeholder:text-white focus:placeholder:opacity-0"
+          ></input>
+        </form>
         {deadline && (
           <p className="gap-1 items-center flex text-xs">
             <Clock className="size-3" />
