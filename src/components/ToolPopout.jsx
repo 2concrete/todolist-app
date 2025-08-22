@@ -1,7 +1,7 @@
 import { ChevronLeft, Settings } from "lucide-react";
 import { useState } from "react";
 import DateButton from "./DateButton";
-import { AnimatePresence, easeInOut, motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import DeleteAllButton from "./DeleteAllButton";
 
 const ToolPopout = ({ setDeadline, deadline, deleteAll }) => {

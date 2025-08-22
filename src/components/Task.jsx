@@ -11,7 +11,7 @@ const Task = ({ text, date, toggleTask, deleteTask, completed, deadline }) => {
         className="cursor-pointer flex items-center flex-shrink-0"
       >
         <Check
-          className={`size-6 w-8 hover:text-green-400 transition-all ${
+          className={`size-6 w-8 transition-all ${
             completed ? "text-green-400" : "text-neutral-200"
           }`}
         />

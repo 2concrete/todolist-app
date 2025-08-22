@@ -24,11 +24,11 @@ const DateButton = ({ deadline, setDeadline }) => {
       <AnimatePresence>
         {showPopout && (
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 100, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 100, y: 30 }}
+            exit={{ opacity: 0, zy: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className=""
+            className="absolute"
           >
             <input
               onChange={handleChange}
