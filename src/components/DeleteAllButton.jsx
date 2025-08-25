@@ -12,7 +12,7 @@ const DeleteAllButton = ({ deleteAll }) => {
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3 }}
       whileTap={{ scale: 0.9 }}
-      className="cursor-pointer hover:text-red-300"
+      className="cursor-pointer transition-all hover:text-red-300"
     >
       <Trash />
     </motion.button>

@@ -34,7 +34,7 @@ const TaskInput = ({ addTask, deleteAll }) => {
       <input
         onChange={handleChange}
         placeholder="enter task..."
-        className="bg-neutral-200 rounded-xs w-60 p-2 outline-none"
+        className="bg-transparent rounded-xs text-neutral-800 dark:text-neutral-200 w-60 p-2 outline-none"
         value={value}
       ></input>
       <ToolPopout

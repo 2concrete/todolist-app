@@ -32,7 +32,7 @@ const Task = ({
           }`}
         />
       </motion.button>
-      <div className="flex-1 p-2 border-b-1 break-words flex flex-col">
+      <div className="flex-1 p-2 border-b-1 border-neutral-800 dark:border-neutral-200 break-words flex flex-col">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -45,7 +45,7 @@ const Task = ({
             placeholder={text}
             value={newText}
             ref={inputRef}
-            className="w-full outline-none bg-transparent placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0"
+            className="w-full outline-none bg-transparent text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0"
           ></input>
         </form>
         {deadline && (

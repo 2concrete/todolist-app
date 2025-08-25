@@ -32,7 +32,7 @@ const DateButton = ({ deadline, setDeadline }) => {
           >
             <input
               onChange={handleChange}
-              className="outline-none flex items-center"
+              className="outline-none text-neutral-800 dark:text-neutral-200 flex bg-transparent items-center"
               type="date"
               value={deadline || ""}
             />
