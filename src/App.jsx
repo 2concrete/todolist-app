@@ -9,7 +9,10 @@ const App = () => {
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
     if (isDark) {
@@ -23,6 +26,10 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(isDark));
+  }, [isDark]);
 
   const addTask = (text, deadline) => {
     const newTask = {
