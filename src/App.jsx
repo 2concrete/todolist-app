@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import ThemeToggle from "./components/ThemeToggle";
+import { easeInOut, motion } from "motion/react";
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -13,6 +14,8 @@ const App = () => {
     const saved = localStorage.getItem("theme");
     return saved ? JSON.parse(saved) : [];
   });
+
+  const [editDescription, setEditDescription] = useState(false);
 
   useEffect(() => {
     if (isDark) {
@@ -31,12 +34,13 @@ const App = () => {
     localStorage.setItem("theme", JSON.stringify(isDark));
   }, [isDark]);
 
-  const addTask = (text, deadline) => {
+  const addTask = (text, deadline, description) => {
     const newTask = {
       text: text,
       date: Date.now(),
       completed: false,
       deadline: deadline,
+      description: description,
     };
     setTasks([...tasks, newTask]);
     console.log(tasks);
@@ -58,22 +62,44 @@ const App = () => {
     setTasks(tasks.filter((task) => task.date !== date));
   };
 
-  const editTask = (date, text) => {
-    setTasks(
-      tasks.map((task) => (task.date === date ? { ...task, text: text } : task))
-    );
+  const editTask = (date, text, description) => {
+    if (description) {
+      setTasks(
+        tasks.map((task) =>
+          task.date === date
+            ? { ...task, text: text, description: description }
+            : task
+        )
+      );
+    } else {
+      setTasks(
+        tasks.map((task) =>
+          task.date === date ? { ...task, text: text } : task
+        )
+      );
+    }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-neutral-100 dark:bg-neutral-900">
       <div className="flex flex-col gap-8 w-96 h-1/2">
-        <TaskInput addTask={addTask} deleteAll={deleteAll} />
-        <TaskList
-          deleteTask={deleteTask}
-          toggleTask={toggleTask}
-          tasks={tasks}
-          editTask={editTask}
-        />
+        <motion.div
+          layout="position"
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <TaskInput
+            addTask={addTask}
+            deleteAll={deleteAll}
+            editDescription={editDescription}
+            setEditDescription={setEditDescription}
+          />
+          <TaskList
+            deleteTask={deleteTask}
+            toggleTask={toggleTask}
+            tasks={tasks}
+            editTask={editTask}
+          />
+        </motion.div>
       </div>
       <ThemeToggle setIsDark={setIsDark} isDark={isDark} />
     </div>

@@ -7,6 +7,7 @@ const TaskList = ({ tasks, toggleTask, deleteTask, editTask }) => {
       <AnimatePresence>
         {tasks.map((task, index) => (
           <motion.div
+            layout="position"
             key={index}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -21,6 +22,7 @@ const TaskList = ({ tasks, toggleTask, deleteTask, editTask }) => {
               completed={task.completed}
               text={task.text}
               date={task.date}
+              description={task.description}
               deadline={task.deadline}
             />
           </motion.div>

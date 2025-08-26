@@ -3,12 +3,20 @@ import { useState } from "react";
 import DateButton from "./DateButton";
 import { AnimatePresence, motion } from "motion/react";
 import DeleteAllButton from "./DeleteAllButton";
+import DescriptionButton from "./DescriptionButton";
 
-const ToolPopout = ({ setDeadline, deadline, deleteAll }) => {
+const ToolPopout = ({
+  setDeadline,
+  deadline,
+  deleteAll,
+  editDescription,
+  setEditDescription,
+}) => {
   const [showPopout, setShowPopout] = useState(false);
   return (
     <div className="flex gap-1 text-neutral-800 dark:text-neutral-200">
       <motion.button
+        type="button"
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -26,6 +34,10 @@ const ToolPopout = ({ setDeadline, deadline, deleteAll }) => {
             className="flex gap-2"
           >
             <DateButton deadline={deadline} setDeadline={setDeadline} />
+            <DescriptionButton
+              editDescription={editDescription}
+              setEditDescription={setEditDescription}
+            />
             <DeleteAllButton deleteAll={deleteAll} />
           </motion.div>
         )}

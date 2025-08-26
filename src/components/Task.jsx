@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 const Task = ({
   text,
   date,
+  description,
   toggleTask,
   deleteTask,
   completed,
@@ -12,10 +13,43 @@ const Task = ({
   editTask,
 }) => {
   const [newText, setNewText] = useState("");
-  const handleChange = (e) => {
+  const [newDescription, setNewDescription] = useState("");
+
+  const inputRef = useRef(null);
+  const descriptionRef = useRef(null);
+
+  const handleTextChange = (e) => {
     setNewText(e.target.value);
   };
-  const inputRef = useRef(null);
+
+  const handleDescriptionChange = (e) => {
+    setNewDescription(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+
+    // Call editTask with the updated text and description
+    editTask(date, newText || text, newDescription || description);
+
+    // Blur the appropriate input field
+    if (document.activeElement === inputRef.current) {
+      inputRef.current.blur();
+    } else if (document.activeElement === descriptionRef.current) {
+      descriptionRef.current.blur();
+    }
+
+    // Clear the local states
+    setNewText("");
+    setNewDescription("");
+  };
+
   return (
     <div className="flex gap-2 items-center">
       <motion.button
@@ -33,20 +67,25 @@ const Task = ({
         />
       </motion.button>
       <div className="flex-1 p-2 border-b-1 border-neutral-800 dark:border-neutral-200 break-words flex flex-col">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            editTask(date, newText);
-            inputRef.current.blur();
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <input
-            onChange={handleChange}
+            onChange={handleTextChange}
             placeholder={text}
             value={newText}
             ref={inputRef}
             className="w-full outline-none bg-transparent text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0"
-          ></input>
+          />
+          {description && (
+            <textarea
+              onChange={handleDescriptionChange}
+              placeholder={description}
+              value={newDescription}
+              ref={descriptionRef}
+              onKeyDown={handleKeyDown}
+              rows={1}
+              className="text-sm w-full outline-none bg-transparent text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0 resize-y"
+            />
+          )}
         </form>
         {deadline && (
           <p className="gap-1 items-center flex text-xs">
