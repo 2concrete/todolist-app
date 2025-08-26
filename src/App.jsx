@@ -67,6 +67,7 @@ const App = () => {
             return { ...task, priority: "low" };
           }
         }
+        return task;
       })
     );
   };
