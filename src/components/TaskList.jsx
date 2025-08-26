@@ -1,7 +1,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import Task from "./Task";
 
-const TaskList = ({ tasks, toggleTask, deleteTask, editTask }) => {
+const TaskList = ({
+  tasks,
+  toggleTask,
+  deleteTask,
+  editTask,
+  changePriority,
+}) => {
   return (
     <div className="flex flex-col-reverse gap-2">
       <AnimatePresence>
@@ -15,11 +21,13 @@ const TaskList = ({ tasks, toggleTask, deleteTask, editTask }) => {
             transition={{ duration: 0.1 }}
           >
             <Task
+              changePriority={changePriority}
               key={index}
               toggleTask={toggleTask}
               deleteTask={deleteTask}
               editTask={editTask}
               completed={task.completed}
+              priority={task.priority}
               text={task.text}
               date={task.date}
               description={task.description}

@@ -41,6 +41,7 @@ const App = () => {
       completed: false,
       deadline: deadline,
       description: description,
+      priority: "medium",
     };
     setTasks([...tasks, newTask]);
     console.log(tasks);
@@ -51,6 +52,22 @@ const App = () => {
       tasks.map((task) =>
         task.date === date ? { ...task, completed: !task.completed } : task
       )
+    );
+  };
+
+  const changePriority = (date) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.date === date) {
+          if (task.priority === "low") {
+            return { ...task, priority: "medium" };
+          } else if (task.priority === "medium") {
+            return { ...task, priority: "high" };
+          } else if (task.priority === "high") {
+            return { ...task, priority: "low" };
+          }
+        }
+      })
     );
   };
 
@@ -95,6 +112,7 @@ const App = () => {
             setEditDescription={setEditDescription}
           />
           <TaskList
+            changePriority={changePriority}
             deleteTask={deleteTask}
             toggleTask={toggleTask}
             tasks={tasks}

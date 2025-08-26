@@ -1,4 +1,4 @@
-import { Check, Clock, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Clock, Minus, X } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useRef } from "react";
 
@@ -6,11 +6,13 @@ const Task = ({
   text,
   date,
   description,
+  priority,
   toggleTask,
   deleteTask,
   completed,
   deadline,
   editTask,
+  changePriority,
 }) => {
   const [newText, setNewText] = useState("");
   const [newDescription, setNewDescription] = useState("");
@@ -48,6 +50,12 @@ const Task = ({
     // Clear the local states
     setNewText("");
     setNewDescription("");
+  };
+
+  const getPriority = () => {
+    if (priority === "low") return <ChevronDown />;
+    else if (priority === "medium") return <Minus />;
+    else if (priority === "high") return <ChevronUp />;
   };
 
   return (
@@ -98,10 +106,19 @@ const Task = ({
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        className="text-neutral-800 dark:text-neutral-200"
+        onClick={() => changePriority(date)}
+      >
+        {getPriority()}
+      </motion.button>
+      <motion.button
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => deleteTask(date)}
         className="cursor-pointer flex items-center flex-shrink-0"
       >
-        <X className="size-6 text-neutral-800 dark:text-neutral-200 hover:text-red-300 transition-all" />
+        <X className="size-6 text-neutral-800 dark:text-neutral-200 transition-all" />
       </motion.button>
     </div>
   );
