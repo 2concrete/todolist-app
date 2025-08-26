@@ -82,9 +82,10 @@ const App = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-neutral-100 dark:bg-neutral-900">
-      <div className="flex flex-col gap-8 w-96 h-1/2">
+      <div className="h-1/2">
         <motion.div
           layout="position"
+          className="flex flex-col gap-8 w-96"
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <TaskInput

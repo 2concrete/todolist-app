@@ -1,5 +1,4 @@
 import { ChevronLeft, Settings } from "lucide-react";
-import { useState } from "react";
 import DateButton from "./DateButton";
 import { AnimatePresence, motion } from "motion/react";
 import DeleteAllButton from "./DeleteAllButton";
@@ -11,8 +10,9 @@ const ToolPopout = ({
   deleteAll,
   editDescription,
   setEditDescription,
+  showToolPopout,
+  setShowToolPopout,
 }) => {
-  const [showPopout, setShowPopout] = useState(false);
   return (
     <div className="flex gap-1 text-neutral-800 dark:text-neutral-200">
       <motion.button
@@ -20,13 +20,13 @@ const ToolPopout = ({
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setShowPopout(!showPopout)}
+        onClick={() => setShowToolPopout(!showToolPopout)}
         className="cursor-pointer"
       >
-        {showPopout ? <ChevronLeft /> : <Settings />}
+        {showToolPopout ? <ChevronLeft /> : <Settings />}
       </motion.button>
       <AnimatePresence>
-        {showPopout && (
+        {showToolPopout && (
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 100, x: 0 }}

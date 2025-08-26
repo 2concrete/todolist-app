@@ -83,12 +83,12 @@ const Task = ({
               ref={descriptionRef}
               onKeyDown={handleKeyDown}
               rows={1}
-              className="text-sm w-full outline-none bg-transparent text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0 resize-y"
+              className="text-sm w-full relative bottom-0.5 outline-none bg-transparent text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-800 dark:placeholder:text-neutral-200 focus:placeholder:opacity-0 resize-y"
             />
           )}
         </form>
         {deadline && (
-          <p className="gap-1 items-center flex text-xs">
+          <p className="gap-1 items-center text-neutral-800 opacity-80 dark:text-neutral-200 flex text-xs">
             <Clock className="size-3" />
             {deadline}
           </p>

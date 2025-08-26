@@ -9,6 +9,7 @@ const TaskInput = ({
   editDescription,
   setEditDescription,
 }) => {
+  const [showToolPopout, setShowToolPopout] = useState(false);
   const [text, setText] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState(null);
@@ -28,6 +29,7 @@ const TaskInput = ({
       setDescription("");
       setDeadline(null);
       setEditDescription(false);
+      setShowToolPopout(false);
     }
   };
 
@@ -38,7 +40,7 @@ const TaskInput = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-start gap-2">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2">
       <motion.button
         initial={{ scale: 1 }}
         whileTap={{ scale: 0.9 }}
@@ -73,6 +75,8 @@ const TaskInput = ({
         editDescription={editDescription}
         setEditDescription={setEditDescription}
         deadline={deadline}
+        showToolPopout={showToolPopout}
+        setShowToolPopout={setShowToolPopout}
         setDeadline={setDeadline}
         deleteAll={deleteAll}
       />
