@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 
 const TaskInput = ({
   addTask,
+  addTag,
+  tags,
   deleteAll,
   editDescription,
   setEditDescription,
@@ -40,7 +42,7 @@ const TaskInput = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2">
+    <form onSubmit={handleSubmit} className="flex items-start gap-2">
       <motion.button
         initial={{ scale: 1 }}
         whileTap={{ scale: 0.9 }}
@@ -50,7 +52,7 @@ const TaskInput = ({
       >
         <Plus className="dark:text-neutral-200 text-neutral-800 size-8" />
       </motion.button>
-      <div className="flex flex-col">
+      <div className="flex flex-col relative bottom-1">
         <input
           onChange={handleTextChange}
           placeholder="enter task..."
@@ -72,6 +74,8 @@ const TaskInput = ({
       </div>
 
       <ToolPopout
+        tags={tags}
+        addTag={addTag}
         editDescription={editDescription}
         setEditDescription={setEditDescription}
         deadline={deadline}

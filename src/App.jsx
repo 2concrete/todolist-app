@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import ThemeToggle from "./components/ThemeToggle";
-import { easeInOut, motion } from "motion/react";
+import { motion } from "motion/react";
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -16,6 +16,20 @@ const App = () => {
   });
 
   const [editDescription, setEditDescription] = useState(false);
+  const [tags, setTags] = useState([]);
+
+  const addTag = (name, color, emoji) => {
+    const newTag = {
+      name: name,
+      color: color,
+      emoji: emoji,
+    };
+    setTags([...tags, newTag]);
+  };
+
+  useEffect(() => {
+    console.log(tags);
+  }, [tags]);
 
   useEffect(() => {
     if (isDark) {
@@ -107,7 +121,9 @@ const App = () => {
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <TaskInput
+            addTag={addTag}
             addTask={addTask}
+            tags={tags}
             deleteAll={deleteAll}
             editDescription={editDescription}
             setEditDescription={setEditDescription}

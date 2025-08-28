@@ -3,6 +3,7 @@ import DateButton from "./DateButton";
 import { AnimatePresence, motion } from "motion/react";
 import DeleteAllButton from "./DeleteAllButton";
 import DescriptionButton from "./DescriptionButton";
+import TagButton from "./TagButton";
 
 const ToolPopout = ({
   setDeadline,
@@ -12,9 +13,11 @@ const ToolPopout = ({
   setEditDescription,
   showToolPopout,
   setShowToolPopout,
+  addTag,
+  tags,
 }) => {
   return (
-    <div className="flex gap-1 text-neutral-800 dark:text-neutral-200">
+    <div className="flex gap-1 text-neutral-800 dark:text-neutral-200 items-start">
       <motion.button
         type="button"
         initial={{ scale: 1 }}
@@ -31,7 +34,7 @@ const ToolPopout = ({
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 100, x: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="flex gap-2"
+            className="flex gap-2 items-start"
           >
             <DateButton deadline={deadline} setDeadline={setDeadline} />
             <DescriptionButton
@@ -39,6 +42,7 @@ const ToolPopout = ({
               setEditDescription={setEditDescription}
             />
             <DeleteAllButton deleteAll={deleteAll} />
+            <TagButton addTag={addTag} tags={tags} />
           </motion.div>
         )}
       </AnimatePresence>
