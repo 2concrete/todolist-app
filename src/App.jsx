@@ -155,7 +155,7 @@ const App = () => {
       <div className="h-1/2">
         <motion.div
           layout="position"
-          className="flex flex-col gap-8 w-96"
+          className="flex flex-col gap-8 w-96 relative"
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <TaskInput

@@ -9,7 +9,7 @@ const TaskList = ({
   changePriority,
 }) => {
   return (
-    <div className="flex flex-col-reverse gap-2">
+    <div className="flex flex-col-reverse gap-2 absolute top-16">
       <AnimatePresence>
         {tasks.map((task, index) => (
           <motion.div
