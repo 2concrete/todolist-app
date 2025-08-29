@@ -4,7 +4,7 @@ import { useState } from "react";
 import TagCreator from "./TagCreator";
 import TagList from "./TagList";
 
-const TagButton = ({ addTag, tags }) => {
+const TagButton = ({ addTag, tags, onSelect }) => {
   const [showPopout, setShowPopout] = useState(false);
   return (
     <div className="text-neutral-800 dark:text-neutral-200 flex flex-col gap-2">
@@ -21,7 +21,7 @@ const TagButton = ({ addTag, tags }) => {
       {showPopout && (
         <div className="flex flex-col gap-2">
           <TagCreator addTag={addTag} />
-          <TagList tags={tags} />
+          <TagList tags={tags} onSelect={onSelect} />
         </div>
       )}
     </div>

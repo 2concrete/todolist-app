@@ -8,6 +8,7 @@ import TagButton from "./TagButton";
 const ToolPopout = ({
   setDeadline,
   deadline,
+  onSelect,
   deleteAll,
   editDescription,
   setEditDescription,
@@ -42,7 +43,7 @@ const ToolPopout = ({
               setEditDescription={setEditDescription}
             />
             <DeleteAllButton deleteAll={deleteAll} />
-            <TagButton addTag={addTag} tags={tags} />
+            <TagButton addTag={addTag} tags={tags} onSelect={onSelect} />
           </motion.div>
         )}
       </AnimatePresence>

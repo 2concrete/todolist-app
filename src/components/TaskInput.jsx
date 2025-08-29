@@ -7,6 +7,7 @@ const TaskInput = ({
   addTask,
   addTag,
   tags,
+  onSelect,
   deleteAll,
   editDescription,
   setEditDescription,
@@ -76,6 +77,7 @@ const TaskInput = ({
       <ToolPopout
         tags={tags}
         addTag={addTag}
+        onSelect={onSelect}
         editDescription={editDescription}
         setEditDescription={setEditDescription}
         deadline={deadline}

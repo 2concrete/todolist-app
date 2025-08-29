@@ -15,30 +15,12 @@ const App = () => {
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [editDescription, setEditDescription] = useState(false);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(() => {
+    const saved = localStorage.getItem("tags");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  const addTag = (name, color, emoji) => {
-    const newTag = {
-      name: name,
-      color: color,
-      emoji: emoji,
-    };
-    setTags([...tags, newTag]);
-  };
-
-  useEffect(() => {
-    console.log(tags);
-  }, [tags]);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    console.log(isDark);
-  }, [isDark]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -47,6 +29,25 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(isDark));
   }, [isDark]);
+  useEffect(() => {
+    localStorage.setItem("tags", JSON.stringify(tags));
+  }, [tags]);
+
+  const [editDescription, setEditDescription] = useState(false);
+
+  const colors = [
+    "#1E1E1E",
+    "#2C3E50",
+    "#8E44AD",
+    "#C0392B",
+    "#27AE60",
+    "#2980B9",
+  ];
+
+  const getRandom = (array) => {
+    const index = Math.floor(Math.random() * array.length);
+    return array[index];
+  };
 
   const addTask = (text, deadline, description) => {
     const newTask = {
@@ -56,10 +57,47 @@ const App = () => {
       deadline: deadline,
       description: description,
       priority: "medium",
+      tags: [...selectedTags], // Use a copy of selectedTags
     };
     setTasks([...tasks, newTask]);
-    console.log(tasks);
+    setSelectedTags([]); // Clear selectedTags after adding the task
+    setTags(
+      tags.map((tag) =>
+        tag.selected === true ? { ...tag, selected: false } : tag
+      )
+    );
   };
+
+  const addTag = (name, color, emoji) => {
+    if ((name, color, emoji)) {
+      const newTag = {
+        name: name,
+        color: color ? color : getRandom(colors),
+        emoji: emoji,
+        selected: false,
+      };
+      setTags([...tags, newTag]);
+    }
+  };
+
+  const onSelect = (name) => {
+    const updatedTags = tags.map((tag) =>
+      tag.name === name ? { ...tag, selected: !tag.selected } : tag
+    );
+    setTags(updatedTags); // Update the global tags state
+    setSelectedTags(
+      updatedTags.filter((tag) => tag.selected) // Update selectedTags independently
+    );
+  };
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    console.log(isDark);
+  }, [isDark]);
 
   const toggleTask = (date) => {
     setTasks(
@@ -124,6 +162,7 @@ const App = () => {
             addTag={addTag}
             addTask={addTask}
             tags={tags}
+            onSelect={onSelect}
             deleteAll={deleteAll}
             editDescription={editDescription}
             setEditDescription={setEditDescription}

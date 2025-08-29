@@ -1,6 +1,7 @@
 import { Check, ChevronDown, ChevronUp, Clock, Minus, X } from "lucide-react";
 import { motion } from "motion/react";
 import { useState, useRef } from "react";
+import Tag from "./Tag";
 
 const Task = ({
   text,
@@ -13,6 +14,7 @@ const Task = ({
   deadline,
   editTask,
   changePriority,
+  tags, // Use task-specific tags
 }) => {
   const [newText, setNewText] = useState("");
   const [newDescription, setNewDescription] = useState("");
@@ -102,6 +104,17 @@ const Task = ({
           </p>
         )}
       </div>
+      {tags.map((tag) => (
+        <div
+          key={tag.name}
+          className="transition-all flex items-center justify-center text-sm gap-1 rounded-full w-fit pr-3 pl-2"
+          style={{ backgroundColor: tag.color }}
+        >
+          <span>{tag.emoji}</span>
+          <p>{tag.name}</p>
+        </div>
+      ))}
+      <Tag />
       <motion.button
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1 }}

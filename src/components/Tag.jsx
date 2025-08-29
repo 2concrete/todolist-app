@@ -1,7 +1,11 @@
-const Tag = ({ name, color, emoji }) => {
+const Tag = ({ name, color, emoji, selected, onSelect }) => {
   return (
     <button
-      className="flex items-center justify-center gap-1 rounded-full w-fit px-2"
+      onClick={() => onSelect(name)}
+      type="button"
+      className={`${
+        selected ? "opacity-80" : "opacity-100"
+      } transition-all flex items-center text-sm justify-center gap-1 rounded-full w-fit pr-3 pl-2`}
       style={{ backgroundColor: color }}
     >
       <span>{emoji}</span>

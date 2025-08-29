@@ -32,6 +32,7 @@ const TaskList = ({
               date={task.date}
               description={task.description}
               deadline={task.deadline}
+              tags={task.tags} // Use task-specific tags
             />
           </motion.div>
         ))}
